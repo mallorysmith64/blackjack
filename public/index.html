@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head lang="en">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Blackjack</title>
-    <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="stylesheet" href="/screen.css">
-  </head>
-  <body>
-    <h1 class='hello-world'></h1>
-    <script src="/main.js" charset="utf-8"></script>
-  </body>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Card Game</title>
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/screen.css">
+</head>
+
+<body>
+  <h1>Card Generator</h1>
+  <h2>
+    Press button to play
+  </h2>
+  <ul>
+    <button class="shuffle-deck">Generate Card</button>
+  </ul>
+  <section>
+    <input type="button" onclick="backgroundChange()" value="Click me"></input>
+  </section>
+  <nav class="results">
+  </nav>
+  <ul class="randomize"></ul>
+  <!-- <section class="display-cards">
+    <img id="show" src="./images/2C.jpg" />
+  </section> -->
+  <script src="/main.js" charset="utf-8">
+  </script>
+</body>
+
 </html>
