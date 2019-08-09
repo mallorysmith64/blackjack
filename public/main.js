@@ -1,4 +1,4 @@
-et deck = []
+let deck = []
 
 //make deck
 const makeCards = () => {
