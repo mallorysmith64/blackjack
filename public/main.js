@@ -68,6 +68,7 @@ const dealPlayerHand = () => {
     document.querySelector('.randomize').appendChild(shuffleButton)
   }
   console.log(state.playerHand)
+  playerHandTotal()
 }
 
 const playerHandTotal = () => {
@@ -82,13 +83,15 @@ const playerHandTotal = () => {
     }
   }
   console.log(handTotal)
+  const playerPoints = document.createElement('h3')
+  playerPoints.textContent = handTotal
+  document.querySelector('.player-points').appendChild(playerPoints)
 }
+console.log(state.handTotal)
 
 const main = () => {
   createDeck()
   shuffle()
-  dealPlayerHand()
-  playerHandTotal()
 }
 
 document.querySelector('.player-hand').addEventListener('click', dealPlayerHand)
