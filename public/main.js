@@ -1,3 +1,4 @@
+let handTotal = 0
 //make deck, this is an object
 const state = {
   suits: ['clubs', 'diamonds', 'hearts', 'spades'],
@@ -12,7 +13,7 @@ const state = {
     { name: '8', value: 8 },
     { name: '9', value: 9 },
     { name: '10', value: 10 },
-    { name: '11', value: 10 },
+    { name: 'Jack', value: 10 },
     { name: 'Queen', value: 10 },
     { name: 'King', value: 10 }
   ],
@@ -65,14 +66,33 @@ const dealPlayerHand = () => {
     state.playerHand.push(dealtCard)
     const shuffleButton = document.createElement('ul')
     shuffleButton.textContent = dealtCard.rank + ' of ' + dealtCard.suit
-    document.querySelector('.randomize').appendChild(shuffleButton)
+    document.querySelector('.deal-player-card').appendChild(shuffleButton)
   }
   console.log(state.playerHand)
   playerHandTotal()
+  if (handTotal > 21) {
+    handTotal = 0
+  } else {
+    handTotal = handTotal
+  }
+}
+
+//add one card to player's hand
+const hitButton = () => {
+  let hit = {}
+  for (let i = 0; i < 1; i++) {
+    //remove one card from deck to player
+    hit = state.deck.pop()
+    console.log(hit)
+    //add one card from deck to player
+    state.deck.push(hit)
+    const hitButton = document.createElement('ul')
+    hitButton.textContent = hit.rank + 'of' + hit.suit
+    document.querySelector('.hit-button').appendChild(hitButton)
+  }
 }
 
 const playerHandTotal = () => {
-  let handTotal
   for (let i = 0; i < state.playerHand.length; i++) {
     const card = state.playerHand[i]
     //add current card value to total
@@ -94,6 +114,7 @@ const main = () => {
   shuffle()
 }
 
+document.querySelector('.hit-button').addEventListener('click', hitButton)
 document.querySelector('.player-hand').addEventListener('click', dealPlayerHand)
 document.addEventListener('DOMContentLoaded', main)
 
