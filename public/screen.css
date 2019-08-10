@@ -16,3 +16,7 @@ body {
 .shuffle-deck {
   font-size: 0.8em;
 }
+
+ul {
+  list-style: none;
+}

@@ -64,7 +64,7 @@ const dealPlayerHand = () => {
     console.log(dealtCard)
     //add to hand
     state.playerHand.push(dealtCard)
-    const shuffleButton = document.createElement('ul')
+    const shuffleButton = document.createElement('li')
     shuffleButton.textContent = dealtCard.rank + ' of ' + dealtCard.suit
     document.querySelector('.deal-player-card').appendChild(shuffleButton)
   }
@@ -86,9 +86,10 @@ const hitButton = () => {
     console.log(hit)
     //add one card from deck to player
     state.deck.push(hit)
-    const hitButton = document.createElement('ul')
-    hitButton.textContent = hit.rank + 'of' + hit.suit
-    document.querySelector('.hit-button').appendChild(hitButton)
+    shuffle()
+    const hitButton = document.createElement('li')
+    hitButton.textContent = hit.rank + ' of ' + hit.suit
+    document.querySelector('.hit-card').appendChild(hitButton)
   }
 }
 
