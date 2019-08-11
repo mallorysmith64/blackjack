@@ -58,9 +58,8 @@ const shuffle = () => {
 //   img.setAttribute('src', findCard)
 
 const dealPlayerHand = () => {
-  let dealtCard = {}
   for (let i = 0; i < 2; i++) {
-    //remove one card
+    //remove cards
     dealtCard = state.deck.pop()
     console.log(dealtCard)
     //add to hand
@@ -72,6 +71,43 @@ const dealPlayerHand = () => {
   console.log(state.playerHand)
   playerHandTotal()
 }
+
+//total card count for player
+const playerHandTotal = () => {
+  for (let i = 0; i < state.playerHand.length; i++) {
+    const card = state.playerHand[i]
+    //add current card value to total
+    if (handTotal) {
+      handTotal += card.value
+    } else {
+      handTotal = card.value
+    }
+  }
+  console.log(handTotal)
+  const playerPoints = document.createElement('h3')
+  playerPoints.textContent = handTotal
+  document.querySelector('.player-points').appendChild(playerPoints)
+}
+console.log(state.handTotal)
+
+//dealer's initial hand
+const dealerHand = () => {
+  for (let i = 0; i < 2; i++) {
+    //remove cards
+    dealtCard = state.deck.pop()
+    console.log(dealtCard)
+    //add cards to dealer's hand
+    state.dealer.push(dealtCard)
+    const dealerBtn = document.createElement('li')
+    dealerBtn.textContent = dealtCard.rank + ' of ' + dealtCard.suit
+    document.querySelector('.give-dealer-cards').appendChild(dealerBtn)
+  }
+  console.log(state.dealerHand)
+  dealerHandTotal()
+}
+
+//total card count for dealer
+const dealerHandTotal = () => {}
 
 //add one card to player's hand
 const hitButton = () => {
@@ -94,23 +130,6 @@ const hitButton = () => {
   document.querySelector('.player-points').textContent = handTotal
 }
 
-const playerHandTotal = () => {
-  for (let i = 0; i < state.playerHand.length; i++) {
-    const card = state.playerHand[i]
-    //add current card value to total
-    if (handTotal) {
-      handTotal += card.value
-    } else {
-      handTotal = card.value
-    }
-  }
-  console.log(handTotal)
-  const playerPoints = document.createElement('h3')
-  playerPoints.textContent = handTotal
-  document.querySelector('.player-points').appendChild(playerPoints)
-}
-console.log(state.handTotal)
-
 const playAgain = () => {
   const playAgainBtn = document.createElement('h3')
   playAgainBtn.textContent = 'Play Again'
@@ -122,6 +141,7 @@ const main = () => {
   createDeck()
   shuffle()
   dealPlayerHand()
+  dealerHand()
 }
 
 document.querySelector('.hit-button').addEventListener('click', hitButton)
