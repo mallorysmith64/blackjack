@@ -146,6 +146,7 @@ const hitForCard = (total, hand) => {
   if (total > 21) {
     const loser = 'Dealer wins!'
     document.querySelector('#player-loser').textContent = loser
+    document.querySelector('.hit-button').disabled = true
     console.log('over 21: you lose')
   }
   document.querySelector('.player-points').textContent = total
@@ -155,7 +156,7 @@ const hitButton = () => {
   hitForCard(handTotal, state.playerHand)
 }
 
-const playerStand = () => {
+const standCard = () => {
   let stand = state.deck.pop()
   dealerTotal += stand.value
   let standButton = document.createElement('li')
@@ -185,5 +186,5 @@ const main = () => {
 
 document.querySelector('.hit-button').addEventListener('click', hitButton)
 document.querySelector('.play-again').addEventListener('click', playAgain)
-document.querySelector('.stand-button').addEventListener('click', playerStand)
+document.querySelector('.stand-button').addEventListener('click', standCard)
 document.addEventListener('DOMContentLoaded', main)
