@@ -167,6 +167,7 @@ const standCard = () => {
     hitForCard(dealerTotal, state.dealerHand)
   }
   document.querySelector('.dealer-points').textContent = dealerTotal
+  document.querySelector('.stand-button').disabled = true
 }
 
 const playAgain = () => {
