@@ -4,8 +4,8 @@ let dealerTotal = 0
 const state = {
   suits: ['clubs', 'diamonds', 'hearts', 'spades'],
   ranks: [
-    { name: 'ace', value: 11 }
-    // { name: '2', value: 2 }
+    { name: 'ace', value: 11 },
+    { name: '2', value: 2 }
     // { name: '3', value: 3 },
     // { name: '4', value: 4 },
     // { name: '5', value: 5 },
@@ -62,7 +62,7 @@ const shuffle = () => {
 const dealPlayerHand = () => {
   for (let i = 0; i < 2; i++) {
     //remove cards
-    dealtCard = state.deck.pop()
+    let dealtCard = state.deck.pop()
     console.log(dealtCard)
     //add to hand
     state.playerHand.push(dealtCard)
@@ -75,7 +75,7 @@ const dealPlayerHand = () => {
 }
 
 //dealer's initial hand
-const dealerHand = () => {
+const dealtHand = () => {
   for (let i = 0; i < 2; i++) {
     //remove cards
     dealCard = state.deck.pop()
@@ -90,7 +90,7 @@ const dealerHand = () => {
   dealerHandTotal()
 }
 
-// const dealerHand = () => {
+// const dealtHand = () => {
 //   dealerHand = []
 //   dealerPoints = 0
 // }
@@ -98,7 +98,7 @@ const dealerHand = () => {
 //total card count for player
 const playerHandTotal = () => {
   for (let i = 0; i < state.playerHand.length; i++) {
-    const card = state.playerHand[i]
+    let card = state.playerHand[i]
     //add current card value to total
     if (handTotal) {
       handTotal += card.value
@@ -111,12 +111,11 @@ const playerHandTotal = () => {
   playerPoints.textContent = handTotal
   document.querySelector('.player-points').appendChild(playerPoints)
 }
-console.log(handTotal)
 
 //total card count for dealer
 const dealerHandTotal = () => {
   for (let i = 0; i < state.dealerHand.length; i++) {
-    const card = state.dealerHand[i]
+    let card = state.dealerHand[i]
     //add current card value to total
     if (dealerTotal) {
       dealerTotal += card.value
@@ -138,25 +137,40 @@ const dealerHandTotal = () => {
 }
 
 //add one card to player's hand
-const hitButton = () => {
+const hitForCard = (total, hand) => {
   //remove one card from deck to player
-  hit = state.deck.pop()
+  let hit = state.deck.pop()
   console.log(hit)
   //add one card from deck to player
-  handTotal += hit.value
-  const hitButton = document.createElement('li')
-  hitButton.textContent = hit.rank + ' of ' + hit.suit
-  document.querySelector('.hit-card').appendChild(hitButton)
-  console.log(handTotal)
+  total += hit.value
+  const hitCard = document.createElement('li')
+  hitCard.textContent = hit.rank + ' of ' + hit.suit
+  document.querySelector('.hit-card').appendChild(hitCard)
+  console.log(total)
 
-  if (handTotal > 21) {
+  if (total > 21) {
     const loser = 'Dealer wins!'
     document.querySelector('#player-loser').textContent = loser
     console.log('over 21: you lose')
-  } else {
-    handTotal = handTotal
   }
-  document.querySelector('.player-points').textContent = handTotal
+  document.querySelector('.player-points').textContent = total
+  //todo add hit to player/dealer hand --use hand var declared in funct
+}
+
+const hitButton = () => {
+  hitForCard(handTotal, state.playerHand)
+}
+
+const playerStand = () => {
+  let stand = state.deck.pop()
+  dealerTotal += stand.value
+  let standButton = document.createElement('li')
+  standButton.textContent = stand.rank + ' of ' + stand.suit
+  document.querySelector('.stand-button').appendChild(standButton)
+
+  if (dealerTotal <= 16) {
+    hitForCard(dealerTotal, state.dealerHand)
+  }
 }
 
 const playAgain = () => {
@@ -171,9 +185,10 @@ const main = () => {
   createDeck()
   shuffle()
   dealPlayerHand()
-  dealerHand()
+  dealtHand()
 }
 
 document.querySelector('.hit-button').addEventListener('click', hitButton)
 document.querySelector('.play-again').addEventListener('click', playAgain)
+document.querySelector('.stand-button').addEventListener('click', playerStand)
 document.addEventListener('DOMContentLoaded', main)
