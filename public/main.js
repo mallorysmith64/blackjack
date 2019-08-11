@@ -5,18 +5,18 @@ const state = {
   suits: ['clubs', 'diamonds', 'hearts', 'spades'],
   ranks: [
     { name: 'ace', value: 11 },
-    { name: '2', value: 2 }
-    // { name: '3', value: 3 },
-    // { name: '4', value: 4 },
-    // { name: '5', value: 5 },
-    // { name: '6', value: 6 },
-    // { name: '7', value: 7 },
-    // { name: '8', value: 8 },
-    // { name: '9', value: 9 },
-    // { name: '10', value: 10 },
-    // { name: 'Jack', value: 10 },
-    // { name: 'Queen', value: 10 },
-    // { name: 'King', value: 10 }
+    { name: '2', value: 2 },
+    { name: '3', value: 3 },
+    { name: '4', value: 4 },
+    { name: '5', value: 5 },
+    { name: '6', value: 6 },
+    { name: '7', value: 7 },
+    { name: '8', value: 8 },
+    { name: '9', value: 9 },
+    { name: '10', value: 10 },
+    { name: 'Jack', value: 10 },
+    { name: 'Queen', value: 10 },
+    { name: 'King', value: 10 }
   ],
 
   //arrays
@@ -90,11 +90,6 @@ const dealtHand = () => {
   dealerHandTotal()
 }
 
-// const dealtHand = () => {
-//   dealerHand = []
-//   dealerPoints = 0
-// }
-
 //total card count for player
 const playerHandTotal = () => {
   for (let i = 0; i < state.playerHand.length; i++) {
@@ -154,7 +149,6 @@ const hitForCard = (total, hand) => {
     console.log('over 21: you lose')
   }
   document.querySelector('.player-points').textContent = total
-  //todo add hit to player/dealer hand --use hand var declared in funct
 }
 
 const hitButton = () => {
@@ -166,7 +160,7 @@ const playerStand = () => {
   dealerTotal += stand.value
   let standButton = document.createElement('li')
   standButton.textContent = stand.rank + ' of ' + stand.suit
-  document.querySelector('.stand-button').appendChild(standButton)
+  document.querySelector('.give-dealer-cards').appendChild(standButton)
 
   if (dealerTotal <= 16) {
     hitForCard(dealerTotal, state.dealerHand)
