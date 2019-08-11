@@ -11,12 +11,22 @@ body {
   min-height: 100%;
   background-color: rgb(218, 62, 56);
   text-align: center;
+  list-style: none;
 }
 
-.shuffle-deck {
+/* .shuffle-deck {
   font-size: 0.8em;
-}
+} */
 
 ul {
   list-style: none;
+}
+
+.hit-button,
+.play-again {
+  border-radius: 0.8em;
+}
+
+header {
+  font-weight: bold;
 }
