@@ -1,26 +1,28 @@
-let handTotal = 0 //handTotal is a value while playerHand is the actual card?
+let handTotal = 0 //handTotal is a value while playerHand is the actual card
+let dealerTotal = 0
 //make deck, this is an object
 const state = {
   suits: ['clubs', 'diamonds', 'hearts', 'spades'],
   ranks: [
     { name: 'ace', value: 11 },
-    { name: '2', value: 2 },
-    { name: '3', value: 3 },
-    { name: '4', value: 4 },
-    { name: '5', value: 5 },
-    { name: '6', value: 6 },
-    { name: '7', value: 7 },
-    { name: '8', value: 8 },
-    { name: '9', value: 9 },
-    { name: '10', value: 10 },
-    { name: 'Jack', value: 10 },
-    { name: 'Queen', value: 10 },
-    { name: 'King', value: 10 }
+    { name: '2', value: 2 }
+    // { name: '3', value: 3 },
+    // { name: '4', value: 4 },
+    // { name: '5', value: 5 },
+    // { name: '6', value: 6 },
+    // { name: '7', value: 7 },
+    // { name: '8', value: 8 },
+    // { name: '9', value: 9 },
+    // { name: '10', value: 10 },
+    // { name: 'Jack', value: 10 },
+    // { name: 'Queen', value: 10 },
+    // { name: 'King', value: 10 }
   ],
 
   //arrays
   deck: [],
-  playerHand: []
+  playerHand: [],
+  dealerHand: []
 }
 
 // create deck, this is a function
@@ -76,15 +78,15 @@ const dealPlayerHand = () => {
 const dealerHand = () => {
   for (let i = 0; i < 2; i++) {
     //remove cards
-    dealCards = state.deck.pop()
-    console.log(dealCards)
+    dealCard = state.deck.pop()
+    console.log(dealCard)
     //add cards to dealer's hand
-    state.dealerCards.push(dealCards)
+    state.dealerHand.push(dealCard)
     const dealerBtn = document.createElement('li')
-    dealerBtn.textContent = dealCards.rank + ' of ' + dealCards.suit
+    dealerBtn.textContent = dealCard.rank + ' of ' + dealCard.suit
     document.querySelector('.give-dealer-cards').appendChild(dealerBtn)
   }
-  console.log(state.dealerCards)
+  console.log(state.dealerCard)
   dealerHandTotal()
 }
 
@@ -116,18 +118,32 @@ const dealerHandTotal = () => {
   for (let i = 0; i < state.dealerHand.length; i++) {
     const card = state.dealerHand[i] //correct letter???
     //add current card value to total
-    if (dealerHandTotal) {
-      dealerHandTotal += card.value
+    if (dealerTotal) {
+      dealerTotal += card.value
     } else {
-      dealerHandTotal = card.value
+      dealerTotal = card.value
     }
   }
-  console.log(dealerHandTotal)
+  console.log(dealerTotal)
   const dealerPoints = document.createElement('h3')
-  dealerPoints.textContent = dealerHandTotal
+  dealerPoints.textContent = dealerTotal
   document.querySelector('.dealer-points').appendChild(dealerPoints)
 }
-console.log(state.dealerHandTotal)
+console.log(state.dealerTotal)
+
+const dealerTotalPoints = () => {
+  for (let i = 0; i < state.dealerHand.length; i++) {
+    // const card = state.dealerHand[i]
+    if (dealerTotal > 21) {
+      dealerTotal = 0
+    } else {
+      dealerTotal = dealerTotal
+    }
+  }
+  console.log(dealerTotal)
+  dealerPoints.textContent = dealerTotal
+  document.querySelector('.dealer-points').textContent = dealerTotal
+}
 
 //add one card to player's hand
 const hitButton = () => {
@@ -143,6 +159,9 @@ const hitButton = () => {
 
   if (handTotal > 21) {
     handTotal = 0
+    // document.getElementById('#loser').textContent = 'Dealer wins!'
+    // message.textContent = 'Dealer Wins'
+    // document.querySelector('.loser').appendChild(message)
     console.log('over 21: you lose')
   } else {
     handTotal = handTotal
@@ -155,6 +174,7 @@ const playAgain = () => {
   playAgainBtn.textContent = 'Play Again'
   window.location.reload()
   document.querySelector('.player-hand').appendChild(playAgain)
+  // document.querySelector('.dealer-hand').appendChild(playAgain)
 }
 
 const main = () => {
