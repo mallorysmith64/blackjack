@@ -14,17 +14,15 @@ body {
   list-style: none;
 }
 
-/* .shuffle-deck {
-  font-size: 0.8em;
-} */
-
 ul {
   list-style: none;
 }
 
 .hit-button,
-.play-again {
-  border-radius: 0.8em;
+.stand-button {
+  border: none;
+  background-color: rgb(80, 80, 172);
+  color: white;
 }
 
 header {

@@ -138,7 +138,7 @@ const hitForCard = (total, hand) => {
   console.log(hit)
   //add one card from deck to player
   total += hit.value
-  const hitCard = document.createElement('li')
+  let hitCard = document.createElement('li')
   hitCard.textContent = hit.rank + ' of ' + hit.suit
   document.querySelector('.hit-card').appendChild(hitCard)
   console.log(total)
@@ -165,6 +165,7 @@ const playerStand = () => {
   if (dealerTotal <= 16) {
     hitForCard(dealerTotal, state.dealerHand)
   }
+  document.querySelector('.dealer-points').textContent = dealerTotal
 }
 
 const playAgain = () => {
