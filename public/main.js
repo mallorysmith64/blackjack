@@ -1,4 +1,4 @@
-let handTotal = 0
+let handTotal = 0 //handTotal is a value while playerHand is the actual card?
 //make deck, this is an object
 const state = {
   suits: ['clubs', 'diamonds', 'hearts', 'spades'],
@@ -18,6 +18,7 @@ const state = {
     { name: 'King', value: 10 }
   ],
 
+  //arrays
   deck: [],
   playerHand: []
 }
@@ -79,18 +80,18 @@ const dealPlayerHand = () => {
 
 //add one card to player's hand
 const hitButton = () => {
-  let hit = {}
-  for (let i = 0; i < 1; i++) {
-    //remove one card from deck to player
-    hit = state.deck.pop()
-    console.log(hit)
-    //add one card from deck to player
-    state.deck.push(hit)
-    shuffle()
-    const hitButton = document.createElement('li')
-    hitButton.textContent = hit.rank + ' of ' + hit.suit
-    document.querySelector('.hit-card').appendChild(hitButton)
-  }
+  let hit = []
+  //remove one card from deck to player
+  hit = state.deck.pop()
+  console.log(hit)
+  //add one card from deck to player
+  handTotal += hit.value
+  const hitButton = document.createElement('li')
+  hitButton.textContent = hit.rank + ' of ' + hit.suit
+  document.querySelector('.hit-card').appendChild(hitButton)
+  console.log(handTotal)
+
+  document.querySelector('.player-points').textContent = handTotal
 }
 
 const playerHandTotal = () => {
@@ -113,15 +114,8 @@ console.log(state.handTotal)
 const main = () => {
   createDeck()
   shuffle()
+  dealPlayerHand()
 }
 
 document.querySelector('.hit-button').addEventListener('click', hitButton)
-document.querySelector('.player-hand').addEventListener('click', dealPlayerHand)
 document.addEventListener('DOMContentLoaded', main)
-
-// const getCard = () => {
-//   if (deck.length > 0) {
-//     const yourCard = deck.pop()
-//     console.log(yourCard)
-//     const shuffleButton = document.createElement('ul')
-//     shuffleButton.textContent = yourCard
