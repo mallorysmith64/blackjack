@@ -158,8 +158,8 @@ const hitButton = () => {
   console.log(handTotal)
 
   if (handTotal > 21) {
-    handTotal = 0
-    // document.getElementById('#loser').textContent = 'Dealer wins!'
+    const loser = 'Dealer wins!'
+    document.querySelector('#loser').textContent = loser
     // message.textContent = 'Dealer Wins'
     // document.querySelector('.loser').appendChild(message)
     console.log('over 21: you lose')
