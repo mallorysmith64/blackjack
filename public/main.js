@@ -71,16 +71,10 @@ const dealPlayerHand = () => {
   }
   console.log(state.playerHand)
   playerHandTotal()
-  if (handTotal > 21) {
-    handTotal = 0
-  } else {
-    handTotal = handTotal
-  }
 }
 
 //add one card to player's hand
 const hitButton = () => {
-  let hit = []
   //remove one card from deck to player
   hit = state.deck.pop()
   console.log(hit)
@@ -91,6 +85,12 @@ const hitButton = () => {
   document.querySelector('.hit-card').appendChild(hitButton)
   console.log(handTotal)
 
+  if (handTotal > 21) {
+    handTotal = 0
+    console.log('over 21: you lose')
+  } else {
+    handTotal = handTotal
+  }
   document.querySelector('.player-points').textContent = handTotal
 }
 
