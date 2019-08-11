@@ -72,6 +72,27 @@ const dealPlayerHand = () => {
   playerHandTotal()
 }
 
+//dealer's initial hand
+const dealerHand = () => {
+  for (let i = 0; i < 2; i++) {
+    //remove cards
+    dealCards = state.deck.pop()
+    console.log(dealCards)
+    //add cards to dealer's hand
+    state.dealerCards.push(dealCards)
+    const dealerBtn = document.createElement('li')
+    dealerBtn.textContent = dealCards.rank + ' of ' + dealCards.suit
+    document.querySelector('.give-dealer-cards').appendChild(dealerBtn)
+  }
+  console.log(state.dealerCards)
+  dealerHandTotal()
+}
+
+// const dealerHand = () => {
+//   dealerHand = []
+//   dealerPoints = 0
+// }
+
 //total card count for player
 const playerHandTotal = () => {
   for (let i = 0; i < state.playerHand.length; i++) {
@@ -90,24 +111,23 @@ const playerHandTotal = () => {
 }
 console.log(state.handTotal)
 
-//dealer's initial hand
-const dealerHand = () => {
-  for (let i = 0; i < 2; i++) {
-    //remove cards
-    dealtCard = state.deck.pop()
-    console.log(dealtCard)
-    //add cards to dealer's hand
-    state.dealer.push(dealtCard)
-    const dealerBtn = document.createElement('li')
-    dealerBtn.textContent = dealtCard.rank + ' of ' + dealtCard.suit
-    document.querySelector('.give-dealer-cards').appendChild(dealerBtn)
-  }
-  console.log(state.dealerHand)
-  dealerHandTotal()
-}
-
 //total card count for dealer
-const dealerHandTotal = () => {}
+const dealerHandTotal = () => {
+  for (let i = 0; i < state.dealerHand.length; i++) {
+    const card = state.dealerHand[i] //correct letter???
+    //add current card value to total
+    if (dealerHandTotal) {
+      dealerHandTotal += card.value
+    } else {
+      dealerHandTotal = card.value
+    }
+  }
+  console.log(dealerHandTotal)
+  const dealerPoints = document.createElement('h3')
+  dealerPoints.textContent = dealerHandTotal
+  document.querySelector('.dealer-points').appendChild(dealerPoints)
+}
+console.log(state.dealerHandTotal)
 
 //add one card to player's hand
 const hitButton = () => {
