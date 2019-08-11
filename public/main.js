@@ -111,6 +111,13 @@ const playerHandTotal = () => {
 }
 console.log(state.handTotal)
 
+const playAgain = () => {
+  const playAgainBtn = document.createElement('h3')
+  playAgainBtn.textContent = 'Play Again'
+  window.location.reload()
+  document.querySelector('.player-hand').appendChild(playAgain)
+}
+
 const main = () => {
   createDeck()
   shuffle()
@@ -118,4 +125,5 @@ const main = () => {
 }
 
 document.querySelector('.hit-button').addEventListener('click', hitButton)
+document.querySelector('.play-again').addEventListener('click', playAgain)
 document.addEventListener('DOMContentLoaded', main)
