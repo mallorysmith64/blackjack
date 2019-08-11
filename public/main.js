@@ -4,8 +4,8 @@ let dealerTotal = 0
 const state = {
   suits: ['clubs', 'diamonds', 'hearts', 'spades'],
   ranks: [
-    { name: 'ace', value: 11 },
-    { name: '2', value: 2 }
+    { name: 'ace', value: 11 }
+    // { name: '2', value: 2 }
     // { name: '3', value: 3 },
     // { name: '4', value: 4 },
     // { name: '5', value: 5 },
@@ -111,12 +111,12 @@ const playerHandTotal = () => {
   playerPoints.textContent = handTotal
   document.querySelector('.player-points').appendChild(playerPoints)
 }
-console.log(state.handTotal)
+console.log(handTotal)
 
 //total card count for dealer
 const dealerHandTotal = () => {
   for (let i = 0; i < state.dealerHand.length; i++) {
-    const card = state.dealerHand[i] //correct letter???
+    const card = state.dealerHand[i]
     //add current card value to total
     if (dealerTotal) {
       dealerTotal += card.value
@@ -125,24 +125,16 @@ const dealerHandTotal = () => {
     }
   }
   console.log(dealerTotal)
-  const dealerPoints = document.createElement('h3')
-  dealerPoints.textContent = dealerTotal
-  document.querySelector('.dealer-points').appendChild(dealerPoints)
-}
-console.log(state.dealerTotal)
-
-const dealerTotalPoints = () => {
-  for (let i = 0; i < state.dealerHand.length; i++) {
-    // const card = state.dealerHand[i]
-    if (dealerTotal > 21) {
-      dealerTotal = 0
-    } else {
-      dealerTotal = dealerTotal
-    }
+  if (dealerTotal > 21) {
+    const winner = 'Dealer loses'
+    document.querySelector('#player-winner').textContent = winner
+    console.log('dealer went over 21: player wins')
+  } else {
+    const dealerPoints = document.createElement('h3')
+    dealerPoints.textContent = dealerTotal
+    document.querySelector('.dealer-points').appendChild(dealerPoints)
   }
-  console.log(dealerTotal)
-  dealerPoints.textContent = dealerTotal
-  document.querySelector('.dealer-points').textContent = dealerTotal
+  console.log(state.dealerTotal)
 }
 
 //add one card to player's hand
@@ -159,9 +151,7 @@ const hitButton = () => {
 
   if (handTotal > 21) {
     const loser = 'Dealer wins!'
-    document.querySelector('#loser').textContent = loser
-    // message.textContent = 'Dealer Wins'
-    // document.querySelector('.loser').appendChild(message)
+    document.querySelector('#player-loser').textContent = loser
     console.log('over 21: you lose')
   } else {
     handTotal = handTotal
