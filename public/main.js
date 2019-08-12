@@ -86,7 +86,7 @@ const dealtHand = () => {
     dealerBtn.textContent = dealCard.rank + ' of ' + dealCard.suit
     document.querySelector('.give-dealer-cards').appendChild(dealerBtn)
   }
-  console.log(state.dealerCard)
+  // console.log(state.dealerCard)
   dealerHandTotal()
 }
 
@@ -120,7 +120,7 @@ const dealerHandTotal = () => {
   }
   console.log(dealerTotal)
   if (dealerTotal > 21) {
-    const winner = 'Dealer loses'
+    const winner = 'Dealer loses' //message about dealer
     document.querySelector('#player-winner').textContent = winner
     console.log('dealer went over 21: player wins')
   } else {
@@ -128,7 +128,7 @@ const dealerHandTotal = () => {
     dealerPoints.textContent = dealerTotal
     document.querySelector('.dealer-points').appendChild(dealerPoints)
   }
-  console.log(state.dealerTotal)
+  // console.log(state.dealerTotal)
 }
 
 //add one card to player's hand
@@ -165,6 +165,10 @@ const standCard = () => {
 
   if (dealerTotal <= 16) {
     hitForCard(dealerTotal, state.dealerHand)
+    if (dealerTotal > 21 || handTotal > dealerTotal) {
+      const playerWinner = 'Player Wins!'
+      document.querySelector('#player-winner').textContent = playerWinner
+    }
   }
   document.querySelector('.dealer-points').textContent = dealerTotal
   document.querySelector('.stand-button').disabled = true
