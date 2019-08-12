@@ -14,9 +14,9 @@ const state = {
     { name: '8', value: 8 },
     { name: '9', value: 9 },
     { name: '10', value: 10 },
-    { name: 'Jack', value: 10 },
-    { name: 'Queen', value: 10 },
-    { name: 'King', value: 10 }
+    { name: 'jack', value: 10 },
+    { name: 'queen', value: 10 },
+    { name: 'king', value: 10 }
   ],
 
   //arrays
@@ -53,12 +53,6 @@ const shuffle = () => {
   console.log(state.deck)
 }
 
-// const displayCards = () => {
-//   let img = document.querySelector('#show')
-//   let show = deck.pop()
-//   let findCard = './image/' + show + '.png'
-//   img.setAttribute('src', findCard)
-
 const dealPlayerHand = () => {
   for (let i = 0; i < 2; i++) {
     //remove cards
@@ -66,8 +60,9 @@ const dealPlayerHand = () => {
     console.log(dealtCard)
     //add to hand
     state.playerHand.push(dealtCard)
-    const shuffleButton = document.createElement('li')
-    shuffleButton.textContent = dealtCard.rank + ' of ' + dealtCard.suit
+    const shuffleButton = document.createElement('img')
+    shuffleButton.src =
+      '/images/cards/' + dealtCard.rank + '_of_' + dealtCard.suit + '.svg'
     document.querySelector('.deal-player-card').appendChild(shuffleButton)
   }
   console.log(state.playerHand)

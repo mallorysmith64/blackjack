@@ -28,3 +28,7 @@ ul {
 header {
   font-weight: bold;
 }
+
+img {
+  size: 0.2em;
+}
