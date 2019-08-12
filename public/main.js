@@ -168,10 +168,12 @@ const standCard = () => {
     if (dealerTotal > 21 || handTotal > dealerTotal) {
       const playerWinner = 'Player Wins!'
       document.querySelector('#player-winner').textContent = playerWinner
+      console.log('dealer went over 21: player wins')
     }
   }
   document.querySelector('.dealer-points').textContent = dealerTotal
   document.querySelector('.stand-button').disabled = true
+  // outputMessage.textContent = 'Player Wins!'
 }
 
 const playAgain = () => {
