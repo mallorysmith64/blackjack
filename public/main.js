@@ -133,8 +133,8 @@ const hitForCard = (total, hand) => {
   console.log(hit)
   //add one card from deck to player
   total += hit.value
-  let hitCard = document.createElement('li')
-  hitCard.textContent = hit.rank + ' of ' + hit.suit
+  let hitCard = document.createElement('img')
+  hitCard.src = '/images/cards/' + hit.rank + '_of_' + hit.suit + '.svg'
   document.querySelector('.hit-card').appendChild(hitCard)
   console.log(total)
 
