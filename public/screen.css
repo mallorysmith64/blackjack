@@ -21,9 +21,10 @@ ul {
 }
 
 .hit-button,
-.stand-button {
+.stand-button,
+.play-again {
   border: none;
-  background-color: rgb(80, 80, 172);
+  background-color: black;
   color: white;
 }
 
