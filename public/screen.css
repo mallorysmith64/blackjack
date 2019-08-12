@@ -9,9 +9,11 @@ html {
 body {
   margin: 0;
   min-height: 100%;
-  background-color: rgb(218, 62, 56);
+  background-color: #269429;
   text-align: center;
   list-style: none;
+  background-image: url('/images/green-felt.jpeg');
+  background-position: 1% 10%;
 }
 
 ul {
@@ -27,8 +29,4 @@ ul {
 
 header {
   font-weight: bold;
-}
-
-.card-img {
-  size: 0.2em;
 }
