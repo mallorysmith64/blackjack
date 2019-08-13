@@ -152,7 +152,7 @@ const standCard = () => {
   let stand = state.deck.pop()
   dealerTotal += stand.value
   let standButton = document.createElement('li')
-  standButton.textContent = stand.rank + ' of ' + stand.suit
+  standButton.value = stand.rank + ' of ' + stand.suit
   document.querySelector('.give-dealer-cards').appendChild(standButton)
 
   if (dealerTotal <= 16) {
