@@ -76,7 +76,7 @@ const dealtHand = () => {
     //add cards to dealer's hand
     state.dealerHand.push(dealCard)
     const dealerBtn = document.createElement('li')
-    dealerBtn.textContent = dealCard.rank + ' of ' + dealCard.suit
+    dealerBtn.value = dealCard.rank + ' of ' + dealCard.suit
     document.querySelector('.give-dealer-cards').appendChild(dealerBtn)
   }
   // console.log(state.dealerCard)
@@ -121,7 +121,6 @@ const dealerHandTotal = () => {
     dealerPoints.textContent = dealerTotal
     document.querySelector('.dealer-points').appendChild(dealerPoints)
   }
-  // console.log(state.dealerTotal)
 }
 
 //add one card to player's hand
@@ -166,7 +165,6 @@ const standCard = () => {
   }
   document.querySelector('.dealer-points').textContent = dealerTotal
   document.querySelector('.stand-button').disabled = true
-  // outputMessage.textContent = 'Player Wins!'
 }
 
 const playAgain = () => {
