@@ -1,6 +1,7 @@
-let handTotal = 0 //handTotal is a value while playerHand is the actual card
+let handTotal = 0
 let dealerTotal = 0
-//make deck, this is an object
+
+//object: make deck
 const state = {
   suits: ['clubs', 'diamonds', 'hearts', 'spades'],
   ranks: [
@@ -25,19 +26,16 @@ const state = {
   dealerHand: []
 }
 
-// create deck, this is a function
 const createDeck = () => {
-  for (let i = 0; i < state.suits.length; i++) {
-    const suit = state.suits[i]
-    for (let j = 0; j < state.ranks.length; j++) {
-      const rank = state.ranks[j]
+  state.suits.forEach(suit => {
+    state.ranks.forEach(rank => {
       state.deck.push({
         rank: rank.name,
         value: rank.value,
         suit: suit
       })
-    }
-  }
+    })
+  })
   console.log(state.deck)
 }
 
@@ -222,20 +220,6 @@ document.addEventListener('DOMContentLoaded', main)
 // // const suit = state.suits[i]
 // // for (let j = 0; j < state.ranks.length; j++) {
 // //   const rank = state.ranks[j]
-
-// // create deck, this is a function
-// const createDeck = () => {
-//   state.suits.forEach(suit => {
-//     state.ranks.forEach(rank => {
-//       state.deck.push({
-//         rank: rank.name,
-//         value: rank.value,
-//         suit: suit
-//       })
-//     })
-//   })
-//   console.log(state.deck)
-// }
 
 // //fisher-yates shuffle
 // const shuffle = () => {
